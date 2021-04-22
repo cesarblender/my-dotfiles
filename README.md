@@ -1,6 +1,8 @@
 # dotfiles
 My Arch Linux configuration (i3wm, pcmanfm, polybar, neovim)
 
+![i3](./i3.png "i3")
+
 You can use this files on any linux distribution (that you can open a terminal), you can install all the dependencies below and start using a tiling window manager.
 
 ## Firstly, install the dependencies below (you can use any package manager, like pacman, apt, apk, etc.)
