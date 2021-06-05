@@ -28,14 +28,18 @@ After enable lightdm you need to disable any other session manager.
 
 # Theming
 
-``
+`
 $ pacman -S papirus-icon-theme adapta-gtk-theme
 $ yay -S nerd-fonts-meslo nerd-fonts-hack nerd-fonts-fira-code
+`
 
-# To change lightdm themes, icons, and typography run (with root)
+
+### To change lightdm themes, icons, and typography run (with root)
+`
 $ lightdm-gtk-settings
+`
 
-# To change the pcmanfm icons & themes (without root)
+### To change the pcmanfm icons & themes (without root)
+`
 $ lxappearance
-``
-
+`
