@@ -13,16 +13,20 @@ In this file you'll find all my *Arch Linux* and my *Vim & NeoVim* configuration
 ## Packages to install 
 
 I'll asume that you have installed an AUR helper like yay.
+
 ``
 $ pacman -S i3 ranger neofetch neovim firefox picom pcmanfm rofi alacritty pulseaudio git python3 dunst lxappearance
 $ yay -S polybar
 ``
+
 I recommend install lightdm because is very customizable.
 
 `
 $ pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-settings
 `
+
 You can enable lightdm with `systemctl enable lightdm.service`
+
 
 After enable lightdm you need to disable any other session manager.
 
