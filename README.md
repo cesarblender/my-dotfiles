@@ -12,6 +12,7 @@ In this file you'll find all my *Arch Linux* and my *Vim & NeoVim* configuration
 - Go to the "Dotfiles" folder.
 - Copy the ".config" folder to your `$HOME` folder `cp -rf ./.config ~`.
 - Copy the "background.jpg" file to `/usr/share/pixmaps/` `cp ./background.jpg /usr/share/pixmaps/`
+- Copy the vim & neovim files `cp ./.vim ./.vimrc ~`
 - Install the following packages.
 
 ## Packages to install 
