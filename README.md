@@ -1,5 +1,9 @@
 # My *Arch Linux* Dotfiles
 
+## Preview
+
+![Preview](./preview.png)
+
 In this file you'll find all my *Arch Linux* and my *Vim & NeoVim* configuration.
 
 ## Setup
