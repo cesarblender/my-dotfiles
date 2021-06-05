@@ -1,68 +1,41 @@
-# dotfiles
-My Arch Linux configuration (i3wm, pcmanfm, polybar, neovim)
+# My *Arch Linux* Dotfiles
 
-![i3](./i3.png "i3")
+In this file you'll find all my *Arch Linux* and my *Vim & NeoVim* configuration.
 
-You can use this files on any linux distribution (that you can open a terminal), you can install all the dependencies below and start using a tiling window manager.
+## Setup
 
-## Firstly, install the dependencies below (you can use any package manager, like pacman, apt, apk, etc.)
+- Clone this repository on any folder.
+- Go to the "Dotfiles" folder.
+- Copy the ".config" folder to your `$HOME` folder `cp -rf ./.config ~`.
+- Copy the "background.jpg" file to `/usr/share/pixmaps/` `cp ./background.jpg /usr/share/pixmaps/`
+- Install the following packages.
 
-$ `pacman -S i3 polybar pcmanfm neovim rofi feh picom compton terminator`
+## Packages to install 
 
-optional you can install a session manager (LightDM)
+I'll asume that you have installed an AUR helper like yay.
+``
+$ pacman -S i3 ranger neofetch neovim firefox picom pcmanfm rofi alacritty pulseaudio git python3 dunst lxappearance
+$ yay -S polybar
+``
+I recommend install lightdm because is very customizable.
 
-$ `pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings`
+`
+$ pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-settings
+`
+You can enable lightdm with `systemctl enable lightdm.service`
 
-## Now, we must to install other files
+After enable lightdm you need to disable any other session manager.
 
-If you're running on Arch or another minimal linux distro, you must install an font manager
+# Theming
 
-$ `pacman -S font-manager`
+`
+$ pacman -S papirus-icon-theme adapta-gtk-theme
+$ yay -S nerd-fonts-meslo nerd-fonts-hack nerd-fonts-fira-code
 
-and then enter to the Hack Nerd Font folder and install theese font files (if you don't know how to do it with the terminal, only click on all the files and click install)
+# To change lightdm themes, icons, and typography run (with root)
+$ lightdm-gtk-settings
 
-you should move your wallpaper to your user directory ($HOME or ~/), then rename it for bg.jpg
+# To change the pcmanfm icons & themes (without root)
+$ lxappearance
+`
 
-or copy my wallpaper with this command
-
-$ `cp ./bg.jpg $HOME/`
-
-## Then copy this files with theese commands
-
-$ `cp -r ./i3 $HOME/.config/`
-
-$ `cp -r ./rofi $HOME/.config/`
-
-$ `cp -r ./rofi $HOME/.config/`
-
-Finally you must to logout from your window manager or restart your computer, then you'll select wich window manager you want to use select i3
-
-## Note if you have an issue, go to this repository and add it, I'll fix your issues!
-
-# Usual issues
-
-## Polybar doesn't run?
-
-only copy this command:
-
-$ `sudo chmod -x $HOME/polybar/lauch.sh`
-
-## The audio is muted
-
-only copy this command:
-
-$ `pacman -S pulseaudio`
-
-and click on the volume module in polybar
-
-## My background is png, what I can do?
-
-go to google and search transform png to jpg and transform it!
-
-## My keyboard layout is built in spanish and the settings're in english
-
-try to restart your computer, if that doesn't work, edit the configuration file in i3
-
-`nvim $HOME/i3/config`
-
-and search the line `exec setxkbmap -layout es`, then change for your keyboard layout (search info on google!)

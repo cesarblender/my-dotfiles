@@ -1,0 +1,259 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+[colors]
+;background = ${xrdb:color0:#222}
+background = #80212121
+background-alt = #212121
+;foreground = ${xrdb:color7:#222}
+foreground = #fff
+foreground-alt = #fff
+primary = #506272A4
+secondary = #50304071
+tertiary = #fff
+alert = #bd2c40
+
+[bar/example]
+width = 100%
+height = 27
+radius = 0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = MesloLGS NF:pixelsize=12:weight=bold;1
+font-1 = MesloLGS NF:fontformat=truetype:size=10:weight=bold:antialias=false;0
+font-2 = MesloLGS NF:pixelsize=12:weight=bold;1
+
+modules-left = i3
+modules-center = xwindow
+modules-right = date
+
+tray-position = right
+tray-padding = 2
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+bottom = false
+
+[bar/bottom]
+width = 100%
+height = 27
+radius = 0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+padding-left = 0
+padding-top = 1
+padding-bottom = 1
+padding-right = 0
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = MesloLGS NF:pixelsize=12:weight=bold;1
+font-1 = MesloLGS NF:fontformat=truetype:size=10:weight=bold:antialias=false;0
+font-2 = MesloLGS NF:pixelsize=12:weight=bold;1
+
+modules-left = apps 
+modules-center = public-ip private-ip
+modules-right = pulseaudio power
+
+tray-position = right
+tray-padding = 2
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+bottom = true
+
+[module/public-ip]
+type = custom/script
+exec = echo "$(curl -4 -sf ifconfig.co)"
+interval = 5
+format-underline = ${colors.primary}
+
+[module/private-ip]
+type = custom/script
+exec = "ip route get 1.2.3.4 | awk '{print $7}'"
+format-underline = ${colors.primary}
+
+[module/power]
+type = custom/script
+exec = echo '⏻ POWER'
+click-left = "~/.config/rofi/powermenu/powermenu.sh"
+format-background = ${colors.primary}
+format-padding = 1
+
+[module/apps]
+type = custom/script
+exec = echo ' APPS'
+click-left = "~/.config/rofi/launchers/ribbon/launcher.sh"
+format-background = ${colors.primary}
+format-padding = 1
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+; Only show workspaces on the same output as the bar
+;pin-workspaces = true
+
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+; focused = Active workspace on focused monitor
+label-focused = %name%
+label-focused-background = ${colors.secondary}
+label-focused-padding = 2
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %name%
+label-unfocused-background = ${colors.primary}
+label-unfocused-padding = 2
+
+; visible = Active workspace on unfocused monitor
+label-visible = %name%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %name%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+; Separator in between workspaces
+; label-separator = |
+
+[module/date]
+type = internal/date
+interval = 5
+
+format-background = ${colors.primary}
+format-padding = 1
+
+date =
+date-alt = " %d/%m/%Y"
+
+time = %I:%M %p
+time-alt = %I:%M %p
+
+format-prefix = 
+format-prefix-foreground = ${colors.foreground-alt}
+
+label = %date% %time%
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <label-volume> <bar-volume>
+label-volume = " 墳 %percentage%%"
+label-volume-foreground = ${root.foreground}
+
+label-muted = 婢 muted
+label-muted-foreground = #fff
+
+format-volume-underline = ${colors.primary}
+format-muted-underline = ${colors.primary}
+format-volume-background = ${colors.primary}
+format-volume-padding = 1
+
+bar-volume-width = 10
+bar-volume-foreground-0 = ${colors.tertiary}
+bar-volume-foreground-1 = ${colors.tertiary}
+bar-volume-foreground-2 = ${colors.tertiary}
+bar-volume-foreground-3 = ${colors.tertiary}
+bar-volume-foreground-4 = ${colors.tertiary}
+bar-volume-foreground-5 = ${colors.tertiary}
+bar-volume-foreground-6 = ${colors.tertiary}
+bar-volume-gradient = false
+bar-volume-indicator = 
+bar-volume-indicator-font = 2
+bar-volume-indicator-foreground = ${colors.tertiary}
+bar-volume-fill = 
+bar-volume-fill-font = 2
+bar-volume-empty = 
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.primary}
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+format-spacing = 1
+
+label-open = 
+label-open-foreground = ${colors.secondary}
+label-close =  cancel
+label-close-foreground = ${colors.secondary}
+label-separator = |
+label-separator-foreground = ${colors.foreground-alt}
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = sudo reboot
+
+menu-2-0 = power off
+menu-2-0-exec = sudo poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+; vim:ft=dosini
